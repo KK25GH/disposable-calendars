@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Calendar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CalendarController extends Controller
 {
@@ -21,7 +23,7 @@ class CalendarController extends Controller
      */
     public function index(Request $request)
     {
-        //カレンダーを作ったのが最も最近なのを表示、hasがascだったら古いやつを表示
+        //カレンダーを作ったのが最も最近なのを表示、hasがascならば古いものから表示
         if($request->has('asc')) {
             $calendars = Calendar::where(['user_id' => Auth::id() ])
                 ->orderBy('created_at','asc')
@@ -32,9 +34,18 @@ class CalendarController extends Controller
                 ->orderBy('created_at','desc')
                 ->get();
         }
+
+        //データをviewに渡す。左側は送る先のview、右は送りたいデータ
+        return view('calendar.index', compact('calendars'));
+
     }
 
-    
+    /**
+     * Calendar新規作成画面
+     */
+
+
+
 }
 
 
