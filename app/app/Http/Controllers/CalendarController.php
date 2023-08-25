@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Calendar\CalendarView;
 use App\Models\Calendar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +40,18 @@ class CalendarController extends Controller
         return view('calendar.index', compact('calendars'));
 
     }
+
+    // test
+
+    public function show(){
+
+		$calendar = new CalendarView(time());
+
+		return view('calendar.index', [
+			"calendar" => $calendar
+		]);
+	}
+
 
     /**
      * Calendar新規作成画面
