@@ -14,7 +14,7 @@
 .calendar table td:before {
 	display: block;
 	float: left;
-	height: 50px;
+	height: 120px;
 	content: "";
 }
 .calendar table td .day {
