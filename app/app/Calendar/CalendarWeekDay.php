@@ -23,6 +23,7 @@ class CalendarWeekDay {
      * 補足：format("j")とは？ 先頭に０をつけない日付  01:x -> 1:o
 	 */
 	function render(){
-		return '<p class="day">' . $this->carbon->format("j"). '</p>';
+		return '<p class="day">' . $this->carbon->format("j"). '</p>
+        <textarea id="memo"></textarea>';
 	}
 }
