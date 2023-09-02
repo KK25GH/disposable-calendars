@@ -8,7 +8,7 @@
        <div class="col-md-2"></div>
        <div class="col-md-8">
            <div class="card">
-               <div class="card-header">{{ $calendar->getTitle() }}</div>
+               <div class="card-header" style="background-color: #B5FF14">{{ $calendar->getTitle() }}</div>
                <div class="card-body">
 					{!! $calendar->render() !!}
                </div>
