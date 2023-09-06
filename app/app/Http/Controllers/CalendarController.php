@@ -41,16 +41,25 @@ class CalendarController extends Controller
 
     }
 
-    // test
+    //ログイン後前回最後に表示したカレンダーを表示する。
 
     public function show(){
 
-        
-		$calendar = new CalendarView(time());
+        $view = null;
 
-		return view('calendar.index', [
-			"calendar" => $calendar
-		]);
+		if($view != null){
+            $calendar = new CalendarView($view);
+
+            return view('calendar.index', [
+                //calendar.indexというビューファイルに、"calendar"という変数名で$calendarという値を渡しています。ビューファイルでは、{ {$calendar}}という形で変数を出力できます。
+                "calendar" => $calendar
+            ]);
+        } else {
+            $calendar = null;
+            return view('calendar.index',[
+                "calendar" => $calendar
+            ]);
+        }
 	}
 
 
