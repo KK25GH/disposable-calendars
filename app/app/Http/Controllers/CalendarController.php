@@ -35,9 +35,9 @@ class CalendarController extends Controller
                 ->orderBy('created_at','desc')
                 ->get();
         }
-
+            $calendar = $this->show();
         //データをviewに渡す。左側は送る先のview、右は送りたいデータ
-        return view('calendar.index', compact('calendars'));
+        return view('calendar.index', compact('calendars','calendar'));
 
     }
 
@@ -50,15 +50,10 @@ class CalendarController extends Controller
 		if($view != null){
             $calendar = new CalendarView($view);
 
-            return view('calendar.index', [
-                //calendar.indexというビューファイルに、"calendar"という変数名で$calendarという値を渡しています。ビューファイルでは、{ {$calendar}}という形で変数を出力できます。
-                "calendar" => $calendar
-            ]);
+            return $calendar;
         } else {
             $calendar = null;
-            return view('calendar.index',[
-                "calendar" => $calendar
-            ]);
+            return $calendar;
         }
 	}
 
