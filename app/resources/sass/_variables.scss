@@ -19,3 +19,24 @@
 .list-group-item p {
     margin: 0px;
 }
+
+
+//create.blade.php  メインコンテンツを中央配置、ボタン配置調整
+
+.ymh1 {
+    text-align: center;
+}
+
+.CandS {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.CandS a {
+    margin-left: 20px;
+}
+
+.container-fluid {
+    margin-top: 30vh;
+}
+
