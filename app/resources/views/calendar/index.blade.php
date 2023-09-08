@@ -2,7 +2,7 @@
 @section('content')
 <div class="container-fluid">
    <div class="row justify-content-center">
-        <div class="col-md-8"><p class="create">編集　新規作成</p></div>
+        <div class="col-md-8"><div class="create"><a href="" class ="btn btn-light">編集</a><a href="" class ="btn btn-light">新規作成</a></div>
    </div>
    <div class="row justify-content-center">
        <div class="col-md-2"></div>

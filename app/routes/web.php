@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::resource('calendar', CalendarController::class);
 
-Route::get('/','App\Http\Controllers\CalendarController@index')->name('calendar');
+//Route::get('/', 'App\Http\Controllers\CalendarController@index')->name('calendar');
+

@@ -35,20 +35,37 @@ class CalendarController extends Controller
                 ->orderBy('created_at','desc')
                 ->get();
         }
-            $calendar = $this->show();
+
+        //イメージとして、最後に使用したカレンダーのidを変数に保存し、次に呼び出すときに使う。
+
+        //テスト：最後に作ったカレンダーのみを変数にいれる。
+        $firstview = Calendar::where(['user_id' => Auth::id()])
+        ->orderBy('created_at','desc')
+        ->first();
+
+        $year = $firstview->year;
+        $month = $firstview->month;
+        if($year === null || $month === null) {
+            $date = null;
+        } else {
+            $date = "{$year}-{$month}-01 00:00:00";
+        }
+
+        //ログイン後前回最後に表示したカレンダーを表示する。
+            $calendar = $this->shows($date);
         //データをviewに渡す。左側は送る先のview、右は送りたいデータ
         return view('calendar.index', compact('calendars','calendar'));
 
     }
 
-    //ログイン後前回最後に表示したカレンダーを表示する。
+    //カレンダーを生成するメソッド
 
-    public function show(){
+    public function shows($date){
 
-        $view = null;
 
-		if($view != null){
-            $calendar = new CalendarView($view);
+
+		if($date != null){
+            $calendar = new CalendarView($date);
 
             return $calendar;
         } else {
@@ -61,6 +78,10 @@ class CalendarController extends Controller
     /**
      * Calendar新規作成画面
      */
+    public function create()
+    {
+        return view('calendar.create');
+    }
 
 
 
