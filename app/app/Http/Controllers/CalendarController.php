@@ -80,7 +80,10 @@ class CalendarController extends Controller
      */
     public function create()
     {
-        return view('calendar.create');
+        $thisYear = date('Y');
+        $thisMonth = date('n');
+
+        return view('calendar.create', compact('thisYear','thisMonth'));
     }
 
 
