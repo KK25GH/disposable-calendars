@@ -6,52 +6,42 @@
                 <div class="col-md-8 margin-bottom">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="center">タイトルを入力してください。</h5>
+                            <h5 class="center"><strong>タイトルを入力してください。</strong></h5>
                         </div>
                         <div class="center">
-                            <input class="c_title" type="text">
+                            {{-- {{ Form::open(['url' => route('')]) }} --}}
+
+                            {{ Form::text('title', '', ['class' => 'form-control form-control-lg', 'placeholder' => '例）大学のスケジュール']) }}
                         </div>
                     </div>
-            </div>
-                <div class="col-md-8 margin-bottom">
-                        <div class="card">
-                            <div class="card-header center">
-                                作成するカレンダーの西暦と月を指定してください。
-                            </div>
-
-                            <h1 class="center padding-top">
-
-                                <select name="selectedYear">
-                                    @for($i=0; $i<50; $i++) {
-                                        <option value="{{$thisYear + $i}}">{{$thisYear + $i}}</option>
-                                    }
-                                    @endfor
-                                </select>
-
-                                年
-
-                                <select name="selectedMonth">
-                                    @for($i=1; $i<=12; $i++) {
-                                        @if($i==$thisMonth)
-                                            <option value="{{$i}}" selected>{{$i}}</option>
-                                        @else
-                                            <option value="{{$i}}">{{$i}}</option>
-                                        @endif
-                                    }
-                                    @endfor
-                                </select>
-
-                                月</h1>
-                        </div>
                 </div>
-                    <div class="col-md-8">
-                        <div class="right">
-
-
-                            <a href="{{route('calendar.index')}}" class ="btn btn-light">キャンセル</a>
-                            <a href="" class ="btn btn-light">作成</a>
+                <div class="col-md-8 margin-bottom">
+                    <div class="card">
+                        <div class="card-header center">
+                            <h5><strong>年・月を指定してください。</strong></h5>
                         </div>
+                        <h1 class="center padding-top">
+                            {!! Form::select(
+                                'selectedYear',
+                                array_combine(range($thisYear, $thisYear + 49), range($thisYear, $thisYear + 49))
+                            ) !!}
+                            年
+                            {!! Form::select('selectedMonth', array_combine(range(1, 12), range(1, 12)), $thisMonth) !!}
+                            月
+                        </h1>
                     </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="right">
+
+
+                        <a href="{{ route('calendar.index') }}" class="btn btn-light">キャンセル</a>
+
+                        {{ Form::submit('作成', ['class' => 'btn btn-light px-4']) }}
+
+                        {{ Form::close() }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
