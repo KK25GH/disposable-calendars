@@ -21,18 +21,25 @@
 }
 
 
-//create.blade.php  メインコンテンツを中央配置、ボタン配置調整
+//create.blade.php  開始
 
-.ymh1 {
+
+//センター寄せクラス
+.center {
     text-align: center;
 }
 
-.CandS {
-    margin-top: 10px;
+//下部マージンクラス
+.margin-bottom {
+    margin-bottom: 30px;
+}
+
+//右寄せクラス
+.right {
     text-align: right;
 }
 
-.CandS a {
+.right a {
     margin-left: 20px;
 }
 
@@ -40,4 +47,20 @@
     margin-top: 30vh;
 }
 
+//上部パディングクラス
+.padding-top {
+    padding-top: 10px;
+}
 
+//カレンダータイトル部分
+.c_title {
+    min-width: 100%;
+}
+
+//option
+
+select, option {
+    border:none;
+}
+
+//create.blade.php 終了
