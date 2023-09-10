@@ -51,10 +51,12 @@ class CalendarController extends Controller
             $date = "{$year}-{$month}-01 00:00:00";
         }
 
+        $title = $firstview->title;
+
         //ログイン後前回最後に表示したカレンダーを表示する。
             $calendar = $this->shows($date);
         //データをviewに渡す。左側は送る先のview、右は送りたいデータ
-        return view('calendar.index', compact('calendars','calendar'));
+        return view('calendar.index', compact('calendars','calendar','title'));
 
     }
 
@@ -76,7 +78,7 @@ class CalendarController extends Controller
 
 
     /**
-     * Calendar新規作成画面
+     * Calendar作成画面への遷移
      */
     public function create()
     {
@@ -86,6 +88,28 @@ class CalendarController extends Controller
         return view('calendar.create', compact('thisYear','thisMonth'));
     }
 
+    /**
+     * Calendar作成（データベースへの保存）
+     */
+    public function store(Request $request)
+    {
+        //バリデーション = 妥当性の確認
+        $request->validate([
+            //タイトル文字上限255文字
+            'title' => 'required|max:255',
+        ]);
+
+        //受け取った変数をデータベースへ挿入する。
+        Calendar::create(
+            [
+                'user_id' => Auth::id(),
+                'title' => $request->title,
+                'year' => $request->selectedYear,
+                'month' => $request->selectedMonth
+            ]
+        );
+        return redirect()->route('calendar.index');
+    }
 
 
 }

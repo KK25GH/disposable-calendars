@@ -9,7 +9,7 @@
        <div class="col-md-8">
             @if($calendar != null)
                 <div class="card">
-                    <div class="card-header">{{ $calendar->getTitle() }}</div>
+                    <div class="card-header">{{ $calendar->getTitle() }}&emsp;&emsp;{{$title}}</div>
                     <div class="card-body">
                             {!! $calendar->render() !!}
                     </div>

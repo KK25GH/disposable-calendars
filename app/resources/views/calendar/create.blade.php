@@ -9,7 +9,7 @@
                             <h5 class="center"><strong>タイトルを入力してください。</strong></h5>
                         </div>
                         <div class="center">
-                            {{-- {{ Form::open(['url' => route('')]) }} --}}
+                            {{ Form::open(['url' => route('calendar.store')]) }}
 
                             {{ Form::text('title', '', ['class' => 'form-control form-control-lg', 'placeholder' => '例）大学のスケジュール']) }}
                         </div>
@@ -35,9 +35,9 @@
                     <div class="right">
 
 
-                        <a href="{{ route('calendar.index') }}" class="btn btn-light">キャンセル</a>
+                        <a href="{{ route('calendar.index') }}" class="btn btn-light border">キャンセル</a>
 
-                        {{ Form::submit('作成', ['class' => 'btn btn-light px-4']) }}
+                        {{ Form::submit('作成', ['class' => 'btn btn-light px-4 border']) }}
 
                         {{ Form::close() }}
                     </div>
