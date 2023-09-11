@@ -27,7 +27,7 @@
                     <div class="list-group-scroll">
                         <div class="list-group list-group-flush">
                           @foreach ($calendars as $item)
-                            <a href="#" class="list-group-item list-group-item-action"><p>{{$item->title}}</p>{{$item->year}}年{{$item->month}}月</a>
+                            <a href="{{ route('calendar.index', ['title'=>$item->title,'year'=>$item->year,'month'=>$item->month]) }}" class="list-group-item list-group-item-action"><p>{{$item->title}}</p>{{$item->year}}年{{$item->month}}月</a>
                           @endforeach
                         </div>
                       </div>

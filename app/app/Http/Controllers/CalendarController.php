@@ -47,13 +47,21 @@ class CalendarController extends Controller
         $month = $firstview->month;
         if($year === null || $month === null) {
             $date = null;
-        } else {
+        } else if($request->title == null && $request->year == null && $request->month == null ) {
+            //リクエスト変数にタイトル、年、月がnullだった場合はfirstview
             $date = "{$year}-{$month}-01 00:00:00";
+        } else {
+            //リクエスト変数に値が入っていた場合＝＞カレンダーリストからのリクエスト
+            $date = "{$request->year}-{$request->month}-01 00:00:00";
         }
 
-        $title = $firstview->title;
-
-        //ログイン後前回最後に表示したカレンダーを表示する。
+        if($request->title == null) {
+            $title = $firstview->title;
+        } else {
+            $title = $request->title;
+        }
+        //実装：最後に作成されたカレンダーを最初に表示する。
+        //未実装：ログイン後前回最後に表示したカレンダーを表示する。
             $calendar = $this->shows($date);
         //データをviewに渡す。左側は送る先のview、右は送りたいデータ
         return view('calendar.index', compact('calendars','calendar','title'));
@@ -110,6 +118,7 @@ class CalendarController extends Controller
         );
         return redirect()->route('calendar.index');
     }
+
 
 
 }
