@@ -43,8 +43,14 @@ class CalendarController extends Controller
         ->orderBy('created_at','desc')
         ->first();
 
-        $year = $firstview->year;
-        $month = $firstview->month;
+        if($firstview != null) {
+            $year = $firstview->year;
+            $month = $firstview->month;
+        } else {
+            $year = null;
+            $month = null;
+        }
+
         if($year === null || $month === null) {
             $date = null;
         } else if($request->title == null && $request->year == null && $request->month == null ) {
@@ -55,8 +61,10 @@ class CalendarController extends Controller
             $date = "{$request->year}-{$request->month}-01 00:00:00";
         }
 
-        if($request->title == null) {
+        if($firstview != null && $request->title == null ) {
             $title = $firstview->title;
+        } else if($firstview == null) {
+            $title = null;
         } else {
             $title = $request->title;
         }
@@ -118,6 +126,16 @@ class CalendarController extends Controller
         );
         return redirect()->route('calendar.index');
     }
+
+    /**
+     * Calendar編集画面への遷移
+     */
+    public function edit()
+    {
+
+        return view('calendar.edit');
+    }
+
 
 
 

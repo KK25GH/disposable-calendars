@@ -17,9 +17,13 @@ use App\Http\Controllers\CalendarController;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('calendar', CalendarController::class);
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('/');
+
+Route::resource('calendar', CalendarController::class, ['only' => ['index','create','store']]);
+
+Route::get('calendar/edit', 'App\Http\Controllers\CalendarController@edit')->name('calendar.edit');
 
 //Route::get('/', 'App\Http\Controllers\CalendarController@index')->name('calendar');
 
