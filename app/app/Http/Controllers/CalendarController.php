@@ -130,10 +130,12 @@ class CalendarController extends Controller
     /**
      * Calendar編集画面への遷移
      */
-    public function edit()
+    public function edit(Request $request)
     {
+        $request->validate(['editTitle'=>'required']);
 
-        return view('calendar.edit');
+        $editTitle = $request->editTitle;
+        return view('calendar.edit', compact('editTitle'));
     }
 
 
