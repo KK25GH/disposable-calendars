@@ -25,5 +25,7 @@ Route::resource('calendar', CalendarController::class, ['only' => ['index','crea
 
 Route::get('calendar/edit', 'App\Http\Controllers\CalendarController@edit')->name('calendar.edit');
 
+Route::post('calendar/update', 'App\Http\Controllers\CalendarController@update')->name('calendar.update');
+
 //Route::get('/', 'App\Http\Controllers\CalendarController@index')->name('calendar');
 

@@ -54,11 +54,13 @@ class CalendarController extends Controller
         if($year === null || $month === null) {
             $date = null;
         } else if($request->title == null && $request->year == null && $request->month == null ) {
-            //リクエスト変数にタイトル、年、月がnullだった場合はfirstview
+            //リクエスト変数のタイトル、年、月がnullだった場合はfirstview
             $date = "{$year}-{$month}-01 00:00:00";
+            $id = $firstview->id;
         } else {
             //リクエスト変数に値が入っていた場合＝＞カレンダーリストからのリクエスト
             $date = "{$request->year}-{$request->month}-01 00:00:00";
+            $id = $request->id;
         }
 
         if($firstview != null && $request->title == null ) {
@@ -72,7 +74,7 @@ class CalendarController extends Controller
         //未実装：ログイン後前回最後に表示したカレンダーを表示する。
             $calendar = $this->shows($date);
         //データをviewに渡す。左側は送る先のview、右は送りたいデータ
-        return view('calendar.index', compact('calendars','calendar','title'));
+        return view('calendar.index', compact('calendars','calendar','title','id'));
 
     }
 
@@ -132,13 +134,39 @@ class CalendarController extends Controller
      */
     public function edit(Request $request)
     {
-        $request->validate(['editTitle'=>'required']);
+        //バリデーション = 妥当性の確認
+        $request->validate([
+            //タイトル文字上限255文字
+            'editTitle' => 'required|max:255',
+        ]);
 
+        $id = $request->id;
         $editTitle = $request->editTitle;
-        return view('calendar.edit', compact('editTitle'));
+        return view('calendar.edit', compact('editTitle','id'));
     }
 
+    /**
+     *  Calendarタイトル変更
+     */
 
+    public function update(Request $request)
+    {
+        //バリデーション = 妥当性の確認
+        $request->validate([
+            //タイトル文字上限255文字
+            'title' => 'required|max:255',
+            'id' => 'required'
+        ]);
+
+        //タイトルを変更し、更新する。(UPDATE)
+        $calendar = Calendar::find($request->id);
+        $calendar->update([
+            'title' => $request->title
+        ]);
+
+        //リダイレクト
+        return redirect()->route('calendar.index');
+    }
 
 
 }
