@@ -3,7 +3,9 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="create"><a href="{{ route('calendar.edit', ['editTitle' => $title, 'id' => $id]) }}"
+                <div class="create">
+                    <a href="{{ route('calendar.delete_request', ['id' => $id]) }}" class="btn btn-light">削除</a>
+                    <a href="{{ route('calendar.edit', ['editTitle' => $title, 'id' => $id]) }}"
                         class="btn btn-light">編集</a><a href="{{ route('calendar.create') }}" class="btn btn-light">新規作成</a>
                 </div>
             </div>
@@ -12,7 +14,9 @@
                 <div class="col-md-8">
                     @if ($calendar != null)
                         <div class="card">
-                            <div class="card-header">{{ $calendar->getTitle() }}&emsp;&emsp;{{ $title }}&emsp;【id:0{{$id}}】</div>
+                            <div class="card-header">
+                                {{ $calendar->getTitle() }}&emsp;&emsp;{{ $title }}&emsp;【id:0{{ $id }}】
+                            </div>
                             <div class="card-body">
                                 {!! $calendar->render() !!}
                             </div>
@@ -20,11 +24,11 @@
                     @else
                         @if ($errors->any())
                             <div class="alert alert-danger">
-                                編集できるカレンダーがありません。
+                                <strong>編集できるカレンダーがありません。</strong>
                             </div>
                         @else
                             <div class="card">
-                                <div class="card-body">登録されたカレンダーがありません。</div>
+                                <div class="card-body">登録されているカレンダーがありません。</div>
                             </div>
                         @endif
                     @endif

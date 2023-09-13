@@ -8,8 +8,6 @@
                         <h5 class="center"><strong>タイトルを変更してください。&emsp;ID:【{{$id}}】</strong></h5>
                     </div>
                     <div class="center">
-                        {{ Form::open(['url' => route('calendar.update')]) }}
-
                         {{ Form::open(['url' => route('calendar.update')]) }} {{ Form::hidden('id', $id) }}
 
                         {{ Form::text('title', $editTitle, ['class' => 'form-control form-control-lg', 'placeholder' => '例）大学のスケジュール', 'style' => 'border:none' ]) }}

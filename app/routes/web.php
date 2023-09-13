@@ -27,5 +27,9 @@ Route::get('calendar/edit', 'App\Http\Controllers\CalendarController@edit')->nam
 
 Route::post('calendar/update', 'App\Http\Controllers\CalendarController@update')->name('calendar.update');
 
+Route::get('calendar/delete_request', 'App\Http\Controllers\CalendarController@delete_request')->name('calendar.delete_request');
+
+Route::post('calendar/delete_confirm', 'App\Http\Controllers\CalendarController@delete_confirm')->name('calendar.delete_confirm');
+
 //Route::get('/', 'App\Http\Controllers\CalendarController@index')->name('calendar');
 

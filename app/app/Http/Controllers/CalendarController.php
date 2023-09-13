@@ -53,6 +53,7 @@ class CalendarController extends Controller
 
         if($year === null || $month === null) {
             $date = null;
+            $id = null;
         } else if($request->title == null && $request->year == null && $request->month == null ) {
             //リクエスト変数のタイトル、年、月がnullだった場合はfirstview
             $date = "{$year}-{$month}-01 00:00:00";
@@ -168,6 +169,32 @@ class CalendarController extends Controller
         return redirect()->route('calendar.index');
     }
 
+    /**
+     *  Calendar削除画面遷移
+     */
+    public function delete_request(Request $request)
+    {
+        //バリデーション = 妥当性の確認
+        $request->validate([
+            //id必須
+            'id' => 'required'
+        ]);
+        $calendar = Calendar::find($request->id);
+        //リダイレクト
+        return view('calendar.delete_request',compact('calendar'));
+    }
+
+    /**
+     * Calendar削除
+     */
+
+     public function delete_confirm(Request $request)
+     {
+        $calendar = Calendar::find($request->id);
+        $calendar->delete();
+
+        return redirect()->route('calendar.index');
+     }
 
 }
 
