@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container-fluid create-vertical-center">
+    <div class="container-fluid vertical-center">
         <div class="row justify-content-center">
-            <div class="col-md-8 margin-bottom">
+            <div class="col-md-8 mb-3">
                 <div class="card alert alert-danger">
                     <div class="card-header center">
                         <div class="row">

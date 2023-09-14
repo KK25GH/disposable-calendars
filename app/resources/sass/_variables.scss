@@ -1,8 +1,3 @@
-//ボタン
-.create {
-    text-align: right;
-}
-
 
 // カレンダーリストのアイテムの数が増えたとき、スクロールに切り替わる。
 .list-group-scroll {
@@ -16,36 +11,14 @@
 }
 
 
+
 //create.blade.php  開始
 
 
-//センター寄せクラス
-.center {
-    text-align: center;
+.vertical-center {
+    margin-top: 25%;
 }
 
-//下部マージンクラス
-.margin-bottom {
-    margin-bottom: 30px;
-}
-
-//右寄せクラス
-.right {
-    text-align: right;
-}
-
-.right a {
-    margin-left: 20px;
-}
-
-.create-vertical-center {
-    margin-top: 30vh;
-}
-
-//上部パディングクラス
-.padding-top {
-    padding-top: 10px;
-}
 
 //カレンダータイトル部分
 .c_title {

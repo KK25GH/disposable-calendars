@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container-fluid create-vertical-center">
+    <div class="container-fluid vertical-center">
         <div class="row justify-content-center">
-            <div class="col-md-8 margin-bottom">
+            <div class="col-md-8 mb-3">
                 <div class="card">
                     <div class="card-header">
                         <h5 class="center"><strong>タイトルを変更してください。&emsp;ID:【{{$id}}】</strong></h5>
@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-md-8 right">
+            <div class="col-md-8 text-end">
 
                 <a href="{{ route('calendar.index') }}" class="btn btn-light border">キャンセル</a>
 
