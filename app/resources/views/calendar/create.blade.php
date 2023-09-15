@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container-fluid vertical-center">
-        <div class="row justify-content-center">
+    <div class="container-fluid">
+        <div class="row flex-column align-items-center justify-content-center">
             <div class="col-md-8 mb-3">
                 <div class="card">
                     <div class="card-header">
@@ -10,7 +10,11 @@
                     <div>
                         {{ Form::open(['url' => route('calendar.store')]) }}
 
-                        {{ Form::text('title', '', ['class' => 'form-control form-control-lg', 'placeholder' => '例）大学のスケジュール', 'style' => 'border:none']) }}
+                        @if ($errors->has('title'))
+                        {{ Form::text('title', '', ['class' => 'form-control form-control-lg border-0 bg-danger rounded-0', 'placeholder' => '未入力']) }}
+                        @else
+                        {{ Form::text('title', '', ['class' => 'form-control form-control-lg border-0', 'placeholder' => '例）大学のスケジュール']) }}
+                        @endif
                     </div>
                 </div>
             </div>
@@ -22,22 +26,24 @@
                     <h1 class="card-body text-center">
                         {!! Form::select(
                             'selectedYear',
-                            array_combine(range($thisYear, $thisYear + 49), range($thisYear, $thisYear + 49))
+                            array_combine(range($thisYear, $thisYear + 49), range($thisYear, $thisYear + 49)),
+                            null,
+                            ['class' => 'border-0'],
                         ) !!}
                         年
-                        {!! Form::select('selectedMonth', array_combine(range(1, 12), range(1, 12)), $thisMonth) !!}
+                        {!! Form::select('selectedMonth', array_combine(range(1, 12), range(1, 12)), $thisMonth, [
+                            'class' => 'border-0',
+                        ]) !!}
                         月
                     </h1>
                 </div>
             </div>
-        </div>
-        <div class="row justify-content-center">
             <div class="col-md-8 text-end">
-                    <a href="{{ route('calendar.index') }}" class="btn btn-light border">キャンセル</a>
+                <a href="{{ route('calendar.index') }}" class="btn btn-light border">キャンセル</a>
 
-                    {{ Form::submit('作成', ['class' => 'btn btn-light px-4 border']) }}
+                {{ Form::submit('作成', ['class' => 'btn btn-light px-4 border']) }}
 
-                    {{ Form::close() }}
+                {{ Form::close() }}
             </div>
         </div>
     </div>

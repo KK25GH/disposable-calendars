@@ -1,4 +1,18 @@
 
+//親要素 html body
+
+html, body {
+    height:100vh
+}
+
+//コンテナの高さ、フレックスボックスの高さ
+.container-fluid {
+    .row {
+        min-height: 85vh
+    }
+}
+
+
 // カレンダーリストのアイテムの数が増えたとき、スクロールに切り替わる。
 .list-group-scroll {
     min-height: 100px;
@@ -10,25 +24,3 @@
     margin: 0px;
 }
 
-
-
-//create.blade.php  開始
-
-
-.vertical-center {
-    margin-top: 25%;
-}
-
-
-//カレンダータイトル部分
-.c_title {
-    min-width: 100%;
-}
-
-//option
-
-select, option {
-    border:none;
-}
-
-//create.blade.php 終了
