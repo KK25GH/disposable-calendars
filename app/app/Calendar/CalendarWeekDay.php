@@ -2,6 +2,8 @@
 namespace App\Calendar;
 use Carbon\Carbon;
 
+
+
 class CalendarWeekDay {
 	protected $carbon;
 

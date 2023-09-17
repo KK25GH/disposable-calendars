@@ -25,7 +25,7 @@ class CalendarController extends Controller
     public function index(Request $request)
     {
         //カレンダーを作ったのが最も最近なのを表示、hasがascならば古いものから表示
-        if($request->has('asc')) {
+        if($request->input('asc')) {
             $calendars = Calendar::where(['user_id' => Auth::id() ])
                 ->orderBy('created_at','asc')
                 ->get();
