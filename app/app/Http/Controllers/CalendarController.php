@@ -25,7 +25,7 @@ class CalendarController extends Controller
     public function index(Request $request)
     {
         //カレンダーを作ったのが最も最近なのを表示、hasがascならば古いものから表示
-        if($request->input('asc')) {
+        if($request->has('asc')) {
             $calendars = Calendar::where(['user_id' => Auth::id() ])
                 ->orderBy('created_at','asc')
                 ->get();
@@ -195,6 +195,30 @@ class CalendarController extends Controller
 
         return redirect()->route('calendar.index');
      }
+
+     /**
+      * Calendarメモ挿入と更新
+      */
+
+      public function upsert_memo(Request $request)
+      {
+        // JavaScriptから送られた変数を受け取る
+        $calendar_id = $request->input('calendar_id');
+        $date = $request->input('date');
+        $memo = $request->input('memo');
+
+        // upsertメソッドでデータを更新または追加する
+        Calendar::upsert(
+        [
+            ['calendar_id' => $calendar_id, 'date' => $date, 'memo' => $memo]
+        ],
+        ['calendar_id', 'date'],
+        ['memo']
+        );
+
+        // レスポンスを返す
+        return response()->json(['message' => 'Success']);
+      }
 
 }
 

@@ -31,5 +31,7 @@ Route::get('calendar/delete_request', 'App\Http\Controllers\CalendarController@d
 
 Route::post('calendar/delete_confirm', 'App\Http\Controllers\CalendarController@delete_confirm')->name('calendar.delete_confirm');
 
-//Route::get('/', 'App\Http\Controllers\CalendarController@index')->name('calendar');
+
+// Ajaxで実行するメソッドのルーティング
+Route::post('calendar/upsert_memo', 'App\Http\Controllers\CalendarController@upsert')->name('calendar.upsert');
 
