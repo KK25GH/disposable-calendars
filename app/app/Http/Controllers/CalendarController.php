@@ -208,7 +208,7 @@ class CalendarController extends Controller
         $memo = $request->input('memo');
 
         // upsertメソッドでデータを更新または追加する
-        Calendar::upsert(
+        Memo::upsert(
         [
             ['calendar_id' => $calendar_id, 'date' => $date, 'memo' => $memo]
         ],

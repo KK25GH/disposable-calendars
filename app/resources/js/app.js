@@ -18,25 +18,35 @@ function updateValue(e) {
     const date = e.target.nextElementSibling.value;
     const memo = e.target.value;
 
-    // 取得した値をダイアログボックスに表示
+    // 取得した値をダイアログボックスにテスト表示
     //alert("date: " + date + " memo: " + memo + " id: " + calendar_id);
 
-    // jQueryのajaxメソッドでコントローラーにPOSTリクエストを送る
-  $.ajax({
-    type: "POST",
-    url: "/calendar/upsert_memo", // コントローラーのURL
-    data: { // 送信する変数
-      calendar_id: calendar_id,
-      date: date,
-      memo: memo
-    },
-    dataType: "json" // レスポンスのデータ形式
-  }).done(function (data) {
-    // 通信が成功したときの処理
-    alert.log(data);
-  }).fail(function (error) {
-    // 通信が失敗したときの処理
-    alert.error(error);
-  });
+// ajaxSetupメソッドでCSRFトークンをヘッダーに付与する
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+
+// jQueryのajaxメソッドでコントローラーにPOSTリクエストを送る
+$.ajax({
+  type: "POST",
+  url: "/calendar/upsert_memo", // コントローラーのURL
+  data: JSON.stringify({
+    // 送信する変数
+    calendar_id: calendar_id,
+    date: date,
+    memo: memo
+  }),
+  dataType: "json", // レスポンスのデータ形式
+  contentType: "application/json" //リクエストのデータ形式
+}).done(function (data) {
+  // 通信が成功したときの処理
+  alert(data['message']);
+}).fail(function (error) {
+  // 通信が失敗したときの処理
+  alert('ajax失敗');
+});
+
 }
 
