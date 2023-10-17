@@ -31,7 +31,7 @@ $.ajaxSetup({
 // jQueryのajaxメソッドでコントローラーにPOSTリクエストを送る
 $.ajax({
   type: "POST",
-  url: "/calendar/upsert_memo", // コントローラーのURL
+  url: "/memo/upsert_memo", // コントローラーのURL
   data: JSON.stringify({
     // 送信する変数
     calendar_id: calendar_id,
@@ -42,10 +42,12 @@ $.ajax({
   contentType: "application/json" //リクエストのデータ形式
 }).done(function (data) {
   // 通信が成功したときの処理
-  alert(data['message']);
+
+  //alert(data['message']); //テスト用
 }).fail(function (error) {
   // 通信が失敗したときの処理
-  alert('ajax失敗');
+
+  //alert('ajax失敗'); //テスト用
 });
 
 }

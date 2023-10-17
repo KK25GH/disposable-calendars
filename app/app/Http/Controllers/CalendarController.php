@@ -11,7 +11,7 @@ class CalendarController extends Controller
 {
     /**
      * ログインしているかを確認する。
-     * している場合は、TodoControllerへアクセスできる。
+     * している場合は、CalendarControllerへアクセスできる。
      * していない場合は、ログインすることを要求する。
      */
     public function __construct()
