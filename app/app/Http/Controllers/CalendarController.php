@@ -73,7 +73,7 @@ class CalendarController extends Controller
         }
         //実装：最後に作成されたカレンダーを最初に表示する。
         //未実装：ログイン後前回最後に表示したカレンダーを表示する。
-            $calendar = $this->shows($date);
+            $calendar = $this->shows($date,$id);
         //データをviewに渡す。左側は送る先のview、右は送りたいデータ
         return view('calendar.index', compact('calendars','calendar','title','id'));
 
@@ -81,12 +81,12 @@ class CalendarController extends Controller
 
     //カレンダーを生成するメソッド
 
-    public function shows($date){
+    public function shows($date,$id){
 
 
 
 		if($date != null){
-            $calendar = new CalendarView($date);
+            $calendar = new CalendarView($date,$id);
 
             return $calendar;
         } else {

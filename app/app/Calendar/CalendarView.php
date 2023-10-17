@@ -6,9 +6,11 @@ use Carbon\Carbon;
 class CalendarView {
 
 	private $carbon;
+    private $id;
 
-	function __construct($date){
+	function __construct($date,$id){
 		$this->carbon = new Carbon($date);
+        $this->id = $id;
 	}
 	/**
 	 * タイトル
@@ -61,7 +63,7 @@ class CalendarView {
      * 週の情報を取得するためのgetWeeks()関数を作成する
      */
 
-	protected function getWeeks(){
+     protected function getWeeks(){
 		$weeks = [];
 
 		//初日
@@ -71,7 +73,7 @@ class CalendarView {
 		$lastDay = $this->carbon->copy()->lastOfMonth();
 
 		//1週目
-		$week = new CalendarWeek($firstDay->copy());
+		$week = new CalendarWeek($firstDay->copy(),count($weeks),$this->id);
 		$weeks[] = $week;
 
         /**
@@ -88,7 +90,7 @@ class CalendarView {
 		//月末までループさせる
 		while($tmpDay->lte($lastDay)){
 			//週カレンダーViewを作成する
-			$week = new CalendarWeek($tmpDay, count($weeks));
+			$week = new CalendarWeek($tmpDay, count($weeks),$this->id);
 			$weeks[] = $week;
 
             //次の週=+7日する
