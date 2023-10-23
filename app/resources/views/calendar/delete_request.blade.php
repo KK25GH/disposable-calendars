@@ -5,8 +5,8 @@
             <div class="col-md-8 mb-3">
                 <div class="card alert alert-danger">
                     <div class="card-header text-center">
-                        <h2>{{ $calendar->year }}年&emsp;{{ $calendar->month }}月&emsp;</h2>
                         <h2>【{{ $calendar->title }}】</h2>
+                        <h2>{{ $calendar->year }}年&emsp;{{ $calendar->month }}月&emsp;</h2>
                     </div>
                     <div class="card-body">
                         <h1 class="text-center"><strong>本当に削除しますか？</strong></h1>

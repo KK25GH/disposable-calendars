@@ -2,11 +2,13 @@
 @section('content')
     <div class="container-fluid">
         <div class="row justify-content-center">
+            <div class="col-md-2"></div>
             <div class="col-md-8 mb-1 text-end">
                 <a href="{{ route('calendar.delete_request', ['id' => $id]) }}" class="btn btn-light">削除</a>
                 <a href="{{ route('calendar.edit', ['editTitle' => $title, 'id' => $id]) }}" id="calendar_id" class="btn btn-light" data-id="{{$id}}">編集</a><a
                     href="{{ route('calendar.create') }}" class="btn btn-light ms-1">新規作成</a>
             </div>
+            <div class="col-md-2"></div>
             <div class="row justify-content-center">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
