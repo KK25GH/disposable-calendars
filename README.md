@@ -42,13 +42,13 @@
 # ER図
 ![ER図](https://i.imgur.com/WWVX71U.png)
 
-#　参考にしたサイト
-カレンダーの生成
-(https://note.com/laravelstudy/n/nea15c1191987)
-メモ入力検知
-(https://developer.mozilla.org/ja/docs/Web/API/HTMLElement/input_event)
-メモをコントローラーに送信
-(https://enginiya.com/entry/laravel-how-to-use-ajax)
+# 参考にしたサイト  
+カレンダーの生成  
+https://note.com/laravelstudy/n/nea15c1191987  
+メモ入力検知  
+https://developer.mozilla.org/ja/docs/Web/API/HTMLElement/input_event  
+メモをコントローラーに送信  
+https://enginiya.com/entry/laravel-how-to-use-ajax  
 
 # 感想と反省
 このアプリケーションに求める基本機能の「カレンダーの生成」と「メモの保存」をインターネット検索を駆使して、実装することができたのはとても良い経験になりました。
