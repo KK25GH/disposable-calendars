@@ -1,6 +1,16 @@
-import './bootstrap';
 import jQuery from 'jquery';
 window.$ = jQuery;
+import Sortable from 'sortablejs';
+
+//【カレンダーリストをドラッグ＆ドロップで並び替える。】
+
+var calendarList = document.getElementById('calendarList');
+var sortable1 = Sortable.create(calendarList,{
+    animation:150,
+});
+
+
+//【カレンダーメモの変更を検知してデータを更新する。】
 
 const inputs = document.querySelectorAll("textarea");
 
@@ -49,5 +59,6 @@ $.ajax({
 
   //alert('ajax失敗'); //テスト用
 });
+
 
 }

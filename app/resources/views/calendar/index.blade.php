@@ -48,15 +48,12 @@
                                 カレンダーリスト
                             </div>
                             {{-- item example --}}
-                            <div class="list-group-scroll">
-                                <div class="list-group list-group-flush">
-                                    @foreach ($calendars as $item)
-                                        <a href="{{ route('calendar.index', ['title' => $item->title, 'year' => $item->year, 'month' => $item->month, 'id' => $item->id]) }}"
-                                            class="list-group-item list-group-item-action">
-                                            <p>{{ $item->title }}</p>{{ $item->year }}年{{ $item->month }}月
-                                        </a>
-                                    @endforeach
-                                </div>
+                            <div id="calendarList" class="list-group-scroll list-group list-group-flush">
+                                @foreach($calendars as $item)
+                                    <a href="{{ route('calendar.index', ['title' => $item->title, 'year' => $item->year, 'month' => $item->month, 'id' => $item->id]) }}" class="list-group-item list-group-item-action">
+                                        <p>{{ $item->title }}</p><p>{{ $item->year }}年{{ $item->month }}月</p>
+                                    </a>
+                                @endforeach
                             </div>
                         </div>
                     @endif
