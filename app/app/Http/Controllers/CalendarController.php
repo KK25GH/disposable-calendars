@@ -24,24 +24,13 @@ class CalendarController extends Controller
      */
     public function index(Request $request)
     {
-        //カレンダーを作ったのが最も最近なのを表示、hasがascならば古いものから表示
-        if($request->has('asc')) {
-            $calendars = Calendar::where(['user_id' => Auth::id() ])
-                ->orderBy('created_at','asc')
-                ->get();
-        } else {
-            //最初のリダイレクトでは、何も代入されていないので、elseの処理
-            $calendars = Calendar::where(['user_id' => Auth::id() ])
-                ->orderBy('created_at','desc')
-                ->get();
-        }
+        //IDを基準に降順でレコードをすべて取得する。
+        $calendars = Calendar::where(['user_id' => Auth::id() ])
+            ->orderBy('id','desc')
+            ->get();
 
-        //イメージとして、最後に使用したカレンダーのidを変数に保存し、次に呼び出すときに使う。
-
-        //テスト：最後に作ったカレンダーのみを変数にいれる。
-        $firstview = Calendar::where(['user_id' => Auth::id()])
-        ->orderBy('created_at','desc')
-        ->first();
+        //$calendarsを降順（作成日が新しい順）で取得したとき１番目に来るレコード
+        $firstview = $calendars->first();
 
         if($firstview != null) {
             $year = $firstview->year;
