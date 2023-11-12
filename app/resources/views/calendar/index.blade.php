@@ -39,10 +39,6 @@
                 </div>
                 <div class="col-md-2">
                     @if (count($calendars) != 0)
-                    <div class="d-flex flex-row justify-content-center mb-1">
-                    <a href="{{ route('calendar.index', ['asc' => true]) }}" class="col-md-5 btn btn-light">昇順</a>
-                    <a href="{{ route('calendar.index') }}" class="col-md-5 btn btn-light ms-2">降順</a>
-                    </div>
                         <div class="card">
                             <div class="card-header">
                                 カレンダーリスト
