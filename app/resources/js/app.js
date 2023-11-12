@@ -1,3 +1,4 @@
+import './bootstrap';
 import jQuery from 'jquery';
 window.$ = jQuery;
 import Sortable from 'sortablejs';
@@ -15,7 +16,7 @@ var sortable1 = Sortable.create(calendarList,{
 const inputs = document.querySelectorAll("textarea");
 
 inputs.forEach(input =>{
-    input.addEventListener("input", updateValue);
+    input.addEventListener("change", updateValue);
 });
 
 //この関数で、カレンダーid、日付、メモ内容を送信する。
