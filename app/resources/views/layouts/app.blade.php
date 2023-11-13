@@ -21,9 +21,9 @@
     @vite(['resources/css/calendar.css'])
 
 </head>
-<body>
+<body style="background-color:#F0F0F0">
     <div id="app">
-        <nav class="navbar navbar-expand-md bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md shadow-sm" style="background-color:#BEEB91">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Disposable Calendars
