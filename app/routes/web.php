@@ -33,5 +33,9 @@ Route::post('calendar/delete_confirm', 'App\Http\Controllers\CalendarController@
 
 
 // Ajaxで実行するメソッドのルーティング
+
+// メモの保存
 Route::post('memo/upsert_memo', 'App\Http\Controllers\MemoController@upsert_memo')->name('memo.upsert_memo');
 
+//カレンダーリストの並び替えを保存する (IDを入れ替える。)
+Route::post('calendar/update_list', 'App\Http\Controllers\CalendarController@update_list')->name('calendar.update_list');

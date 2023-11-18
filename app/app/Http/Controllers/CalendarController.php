@@ -24,9 +24,9 @@ class CalendarController extends Controller
      */
     public function index(Request $request)
     {
-        //IDを基準に降順でレコードをすべて取得する。
+        //カレンダーを並び順を基準にソートし、できないものはidを基準としてソートする
         $calendars = Calendar::where(['user_id' => Auth::id() ])
-            ->orderBy('id','desc')
+            ->orderBy('order_num')->orderByDesc('id')
             ->get();
 
         //$calendarsを降順（作成日が新しい順）で取得したとき１番目に来るレコード
@@ -184,6 +184,26 @@ class CalendarController extends Controller
 
         return redirect()->route('calendar.index');
      }
+
+     /**
+      * //カレンダーリストの並び替えを保存する
+      */
+
+    // カレンダーのorder_numカラムの値を更新するメソッド
+    public function update_list(Request $request)
+    {
+        //コントローラーから順序を保持したid配列を受け取る
+        $data_ids = $request->data_ids;
+
+        //配列順にレコードを取り出して、順番の番号を代入する
+        for($i=0; $i<count($data_ids); $i++) {
+            $calendar = Calendar::where('id','=',$data_ids[$i])->first();
+            $calendar->order_num = $i+1;
+            $calendar->save();
+        }
+        // レスポンスを返す
+        return response('並び替えを更新しました！');
+    }
 
 }
 
