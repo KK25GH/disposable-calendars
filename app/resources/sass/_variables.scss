@@ -12,6 +12,8 @@ html, body {
     }
 }
 
+//カレンダーリスト【開始】
+
 
 // カレンダーリストのアイテムの数が増えたとき、スクロールに切り替わる。
 .list-group-scroll {
@@ -23,5 +25,40 @@ html, body {
 .list-group-item p {
     margin: 0px;
 }
+
+//カレンダーリストのsummaryタグ ▼削除
+summary {
+    display: block;
+    list-style: none;
+  }
+
+//カレンダーリストの表示テキストの切り替え
+details[open] summary::after {
+    content: "閉じる";
+}
+
+details:not([open]) summary::after {
+    content: "開く";
+}
+
+//カレンダーリストのカードヘッダーを中央寄せ
+.card-header{
+    text-align: center;
+}
+
+//カレンダーリストを浮かせる
+#calendarList {
+    width: 100%;
+    position:absolute;
+    float: right;
+    background-color: #cfc;
+}
+
+.calendarListTitle {
+    right:10px;
+    bottom:15px;
+}
+
+//カレンダーリスト【終了】
 
 
