@@ -50,14 +50,23 @@ details:not([open]) summary::after {
 #calendarList {
     width: 100%;
     position:absolute;
+    z-index:1;
     float: right;
     background-color: #cfc;
+    border: solid 1px;
+    border-radius: 0px 0px 5px 5px;
+    border-color: rgb(184, 184, 184);
 }
 
 .calendarListTitle {
     right:10px;
     bottom:15px;
 }
+
+a .list-group-item {
+    width:100%
+}
+
 
 //カレンダーリスト【終了】
 
