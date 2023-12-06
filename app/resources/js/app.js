@@ -3,7 +3,10 @@ import jQuery from 'jquery';
 window.$ = jQuery;
 import Sortable from 'sortablejs';
 
-//【カレンダーリストをドラッグ＆ドロップで並び替える。】
+//holidayNameクラスを持つタグの親要素にholidayクラスを適用する (JQuery)
+$("td:has(.holidayName)").addClass("holiday");
+
+//【カレンダーリストをドラッグ＆ドロップで並び替える】
 
 // div要素を取得
 var calendarList = document.getElementById('calendarList');

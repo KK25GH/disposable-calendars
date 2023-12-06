@@ -1,3 +1,7 @@
+.holiday {
+    background: pink;
+}
+
 .day-blank {
 	background-color: #efefef;
 }
@@ -7,6 +11,7 @@
 .day-sat .day{
 	color: blue;
 }
+
 .calendar table td {
 	padding: 3px;
 	border: solid 1px #999;
@@ -33,4 +38,33 @@
     resize: none;
 }
 
+/* テキストエリアすべての背景色を透明にする */
+textarea {
+    width:100%;
+    background-color: transparent;
+}
 
+/*
+    日付部分のすべての背景色を透明にする
+    dayクラスの要素を横に並べる
+*/
+.day {
+    background-color: transparent;
+    display:flex;
+}
+
+/*
+    dayクラスの子要素のdivタグの文字サイズを変更する
+    （祝日の文字列）
+*/
+
+.day div {
+    font-size:13px;
+    align-self: center;
+    margin-left:5%;
+}
+
+/* 祝日の背景色をピンクにする */
+.holiday {
+    background: pink !important;
+}

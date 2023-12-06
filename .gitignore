@@ -1,1 +1,6 @@
 .idea
+*.Identifier
+conf/web/php.ini:Zone.Identifier
+conf/web/Dockerfile:Zone.Identifier
+conf/web/Dockerfile.production:Zone.Identifier
+conf/web/000-default.conf:Zone.Identifier
