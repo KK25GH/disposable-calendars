@@ -25,7 +25,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md shadow-sm" style="background-color:#BEEB91">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/calendar') }}">
                     Disposable Calendars
                     {{-- {{ config('app.name', 'Laravel') }} --}}
                 </a>

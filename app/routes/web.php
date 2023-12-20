@@ -19,7 +19,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('/');
+Route::get('/', function () {
+    return view('calendar.top');
+})->name('/');
 
 Route::resource('calendar', CalendarController::class, ['only' => ['index','create','store']]);
 
