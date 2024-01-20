@@ -38,6 +38,8 @@ RUN pecl install imagick \
 RUN docker-php-ext-install pdo_pgsql zip
 
 RUN a2enmod rewrite
+RUN a2enmod proxy
+RUN a2enmod proxy_http
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
