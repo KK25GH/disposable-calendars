@@ -24,66 +24,52 @@ class CalendarController extends Controller
      */
     public function index(Request $request)
     {
-        //カレンダーを並び順を基準にソートし、できないものはidを基準としてソートする
-        $calendars = Calendar::where(['user_id' => Auth::id() ])
-            ->orderBy('order_num')->orderByDesc('id')
+        // ユーザーIDに基づいてカレンダーデータを取得し、order_numで昇順、idで降順にソートします
+        $calendars = Calendar::where('user_id', Auth::id())
+            ->orderBy('order_num')
+            ->orderByDesc('id')
             ->get();
 
-        //$calendarsを降順（作成日が新しい順）で取得したとき１番目に来るレコード
-        $firstview = $calendars->first();
+        // カレンダーデータの最初の要素を取得します
+        $first_view = $calendars->first();
 
-        if($firstview != null) {
-            $year = $firstview->year;
-            $month = $firstview->month;
-        } else {
-            $year = null;
-            $month = null;
+        // 初期値を設定します
+        $year = $month = $date = $id = $title = null;
+
+        // $first_viewが存在する場合、そのデータを使用して年、月、日付、ID、タイトルを設定します
+        if ($first_view) {
+            $year = $first_view->year;
+            $month = $first_view->month;
+            $date = "{$year}-{$month}";
+            $id = $first_view->id;
+            $title = $first_view->title;
         }
 
-        if($year === null || $month === null) {
-            $date = null;
-            $id = null;
-        } else if($request->title == null && $request->year == null && $request->month == null ) {
-            //リクエスト変数のタイトル、年、月がnullだった場合はfirstview
-            $date = "{$year}-{$month}-01 00:00:00";
-            $id = $firstview->id;
-        } else {
-            //リクエスト変数に値が入っていた場合＝＞カレンダーリストからのリクエスト
-            $date = "{$request->year}-{$request->month}-01 00:00:00";
+        // リクエストに年と月とタイトルが含まれている場合、それらの値を使用して日付とIDとタイトルを更新します
+        if ($request->year && $request->month && $request->title) {
+            $date = "{$request->year}-{$request->month}";
             $id = $request->id;
-        }
-
-        if($firstview != null && $request->title == null ) {
-            $title = $firstview->title;
-        } else if($firstview == null) {
-            $title = null;
-        } else {
             $title = $request->title;
         }
-        //実装：最後に作成されたカレンダーを最初に表示する。
-        //未実装：ログイン後前回最後に表示したカレンダーを表示する。
-            $calendar = $this->shows($date,$id);
-        //データをviewに渡す。左側は送る先のview、右は送りたいデータ
-        return view('calendar.index', compact('calendars','calendar','title','id'));
 
+        // 指定された日付とIDに基づいてカレンダーのHTMLデータを取得します
+        $calendar = $this->show($date, $id);
+
+        // カレンダーデータ、カレンダーのHTML、タイトル、IDをビューに渡します
+        return view('calendar.index', compact('calendars', 'calendar', 'title', 'id'));
     }
 
     //カレンダーを生成するメソッド
 
-    public function shows($date,$id){
+    public function show($date,$id){
 
+        $calendar = null;
 
-
-		if($date != null){
+		if($date){
             $calendar = new CalendarView($date,$id);
-
-            return $calendar;
-        } else {
-            $calendar = null;
-            return $calendar;
         }
+        return $calendar;
 	}
-
 
     /**
      * Calendar作成画面への遷移
@@ -206,5 +192,3 @@ class CalendarController extends Controller
     }
 
 }
-
-
