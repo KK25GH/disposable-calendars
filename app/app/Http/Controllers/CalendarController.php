@@ -24,6 +24,17 @@ class CalendarController extends Controller
      */
     public function index(Request $request)
     {
+
+        // viewに渡したいデータ ＝ カレンダーを生成する関数
+        list($calendars,$calendar,$title,$id) = $this->generate_calendar($request);
+
+        // カレンダーデータ、カレンダーのHTML、タイトル、IDをビューに渡します
+        return view('calendar.index', compact('calendars', 'calendar', 'title', 'id'));
+    }
+
+    //カレンダーを生成する関数
+    public function generate_calendar($request){
+
         // ユーザーIDに基づいてカレンダーデータを取得し、order_numで昇順、idで降順にソートします
         $calendars = Calendar::where('user_id', Auth::id())
             ->orderBy('order_num')
@@ -52,23 +63,19 @@ class CalendarController extends Controller
             $title = $request->title;
         }
 
-        // 指定された日付とIDに基づいてカレンダーのHTMLデータを取得します
-        $calendar = $this->show($date, $id);
-
-        // カレンダーデータ、カレンダーのHTML、タイトル、IDをビューに渡します
-        return view('calendar.index', compact('calendars', 'calendar', 'title', 'id'));
-    }
-
-    //カレンダーを生成するメソッド
-
-    public function show($date,$id){
-
         $calendar = null;
 
 		if($date){
             $calendar = new CalendarView($date,$id);
         }
-        return $calendar;
+
+        //カレンダーを出力するためのデータをリストでindex関数に戻す
+        return [
+            $calendars,
+            $calendar,
+            $title,
+            $id
+        ];
 	}
 
     /**
